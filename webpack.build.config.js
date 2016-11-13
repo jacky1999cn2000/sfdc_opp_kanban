@@ -31,15 +31,21 @@ const config = {
     },
     module: {
         loaders: [{
+            test: /\.json$/,
+            loader: 'json'
+        }, {
             test: /\.jsx?$/,
             loaders: ['babel?cacheDirectory'],
             include: PATHS.app
         }, {
             test: /\.scss$/,
             include: [PATHS.app, PATHS.foundation],
-            loader: ExtractTextPlugin.extract("style", "css?sourceMap!sass?sourceMap&outputStyle=expanded")
+            loader: ExtractTextPlugin.extract("style", ["css?sourceMap", "postcss", "sass?sourceMap&outputStyle=expanded"])
         }]
     },
+    postcss: [
+        require('autoprefixer')
+    ],
     plugins: [
         new HtmlWebpackPlugin({
             template: 'node_modules/html-webpack-template/index.ejs',

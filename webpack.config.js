@@ -38,6 +38,9 @@ const config = {
     },
     module: {
         loaders: [{
+            test: /\.json$/,
+            loader: 'json'
+        }, {
             test: /\.jsx?$/,
             loaders: ['babel?cacheDirectory'],
             include: PATHS.app
