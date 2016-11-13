@@ -4,35 +4,11 @@ import config from '../config.json';
 
 class Login extends React.Component {
 
-    // let cache = new Cache();
-
-    // function requireAuth(nextState, replace) {
-    //   if (!cache.get('sfdc_token') && !window.location.search) {
-    //     replace({
-    //       pathname: '/login'
-    //     })
-    //   }else{
-    //     if(!cache.get('sfdc_token')){
-    //       let code = decodeURIComponent(window.location.search.split('code=')[1]);
-    //       console.log('code ',code);
-    //     }
-    //   }
-    // }
-    // constructor() {
-    //     super(...arguments);
-    // }
-
     login = () => {
-        console.log('login!!!');
+        // concatenate SFDC authorize endpoint
         let url = config.oauth_host_prod + '?response_type=' + config.response_type + '&client_id=' + config.client_id + '&redirect_uri=' + config.redirect_uri + '&scope=' + config.scope;
-        console.log('url ', url);
+        // redirect to endpoint
         location.replace(url);
-        // location.replace(Sfdc.getOauth().getAuthorizationUrl({scope: 'api id web'}));
-        //this.another();
-    }
-
-    another = () => {
-        console.log('another!');
     }
 
     render() {

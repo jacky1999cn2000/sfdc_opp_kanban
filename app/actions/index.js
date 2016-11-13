@@ -10,17 +10,16 @@ import cache from '../utils/cache';
 
 export const requestToken = (code) => {
     return function(dispatch) {
-        console.log('requestToken...');
-        console.log('code ', code);
         let url = config.api_gateway_request_token + '?code=' + code + '&environment=production';
-        console.log('url ', url);
 
         return fetch(url)
             .then(response => response.json())
             .then(json => {
                 if (json.error) {
+                    // notify App about the err
                     dispatch(changeAppState(['status'], [json]));
                 } else {
+                    // set 'access_token' in cache and notify App 
                     cache.set('access_token', json.access_token);
                     dispatch(changeAppState(['status'], [json]));
                 }
