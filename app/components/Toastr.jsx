@@ -1,13 +1,12 @@
 import React from 'react';
 import {connect} from 'react-redux';
 
-class Kanban extends React.Component {
+class Toastr extends React.Component {
 
     render() {
-        console.log('Kanban render');
         return (
             <div>
-                Kanban component
+                toaster: {this.props.state.appState.get('status')}
             </div>
         );
     }
@@ -21,6 +20,6 @@ const mapDispathToProps = (dispatch) => {
     return {dispatch: dispatch}
 }
 
-Kanban = connect(mapStateToProps, mapDispathToProps)(Kanban);
+Toastr = connect(mapStateToProps, mapDispathToProps)(Toastr);
 
-export default Kanban;
+export default Toastr;
