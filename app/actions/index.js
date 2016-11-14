@@ -19,8 +19,9 @@ export const requestToken = (code) => {
                     // notify App about the err
                     dispatch(changeAppState(['status'], [json]));
                 } else {
-                    // set 'access_token' in cache and notify App 
+                    // set 'access_token' in cache and notify App
                     cache.set('access_token', json.access_token);
+                    cache.set('instance_url', json.instance_url);
                     dispatch(changeAppState(['status'], [json]));
                 }
             })

@@ -1,0 +1,28 @@
+#app {
+  width: 100%;
+  height: 100%;
+}
+
+.app {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+
+  .menu {
+    flex: 1;
+    background-color: transparent;
+  }
+
+  .content {
+    flex: 12;
+    position: relative;
+    overflow-y: auto;
+    background-color: red;
+  }
+
+  .footer {
+    flex: 1;
+    background-color: yellow;
+  }
+}
