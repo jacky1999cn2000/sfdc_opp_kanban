@@ -11,6 +11,7 @@
   color: #848e92;
   cursor: default;
   padding-left: 60px;
+  padding-right: 60px;
   -webkit-transition: all 0.25s ease;
   -moz-transition: all 0.25s ease;
 
@@ -22,6 +23,7 @@
 
 .menu .nav div:last-child {
   float: right;
+  padding-left: 60px;
   padding-right: 60px;
 }
 
