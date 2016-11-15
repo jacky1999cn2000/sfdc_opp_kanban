@@ -1,28 +1,16 @@
-#app {
-  width: 100%;
-  height: 100%;
-}
-
 .app {
   width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
 
-  .menu {
-    flex: 1;
-    background-color: transparent;
-  }
-
+  /*
+    1. no need to set flex for .menu and .footer - they just take whatever they need (based on their contents), and the rest will be taken by .content;
+    2. since we set width & height of html/body/#app/.app all to 100%, so flexbox grid here will take the entire window as available real estate;
+    3. set .content overflow-y:auto will make a fixed footer
+  */
   .content {
-    flex: 12;
-    position: relative;
-    overflow-y: auto;
-    background-color: red;
-  }
-
-  .footer {
     flex: 1;
-    background-color: yellow;
+    overflow-y: auto;
   }
 }

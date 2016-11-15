@@ -1,6 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 
+import Menu from './Menu';
 import Kanban from './Kanban';
 import Login from './Login';
 
@@ -46,9 +47,7 @@ class App extends React.Component {
 
         return (
             <div className="app">
-                <div className="menu">
-                    menu here
-                </div>
+                <Menu/>
                 <div className="content">
                     content
                     <br/>
