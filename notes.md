@@ -9,4 +9,6 @@ s3 proxy: serve s3 object https://www.npmjs.com/package/s3-proxy
 **DIY at least once! http://www.ybrikman.com/writing/2015/11/11/running-docker-aws-ground-up/**
 https://www.expeditedssl.com/aws-in-plain-english
 
-https://scotch.io/tutorials/get-to-know-the-flexbox-grid-in-foundation-6
+Salesforce:
+Security - Session Settings : set how long the oauth token is valid
+Security - CORS : determine which endpoint can make CORS request 

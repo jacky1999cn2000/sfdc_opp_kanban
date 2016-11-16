@@ -1,0 +1,106 @@
+/*
+  kanban style
+*/
+.kanban {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+
+  .filters {
+    padding-top: 100px;
+  }
+
+  .board {
+    flex: 1;
+  }
+}
+
+/*
+  board style
+*/
+.board {
+  display: flex;
+  flex-direction: row;
+
+  .stage {
+    flex: 1;
+  }
+}
+
+/*
+  board style
+*/
+.stage {
+  display: flex;
+  flex-direction: column;
+
+  .name {
+    font-size: 1.5em;
+    font-family: 'Ravi Prakash';
+    text-align: center;
+  }
+
+  .list {
+    flex: 1;
+  }
+}
+
+/*
+  list style
+*/
+.list {
+  background-color: #f5f5f5;
+}
+
+/*
+  opp style
+*/
+.opp {
+  display: block;
+  height: 150px;
+  margin: 5%;
+  box-shadow: 4px 6px 8px rgba(0, 0, 0, 0.75);
+  background-color: white;
+
+  .opp_name {
+    color: #3B73AF;
+    font-family: serif;
+    font-weight: bolder;
+    text-align: left;
+    margin: 2% 5%;
+    padding: 2% 0;
+    border-bottom: 1px solid #3B73AF;
+  }
+
+  .opp_description {
+    padding: 0 5%;
+    font-size: .9em;
+    margin-bottom: 3%;
+  }
+
+  .opp_amount_owner {
+    font-family: 'Roboto';
+    position: relative;
+    margin-bottom: 3%;
+
+    .opp_amount {
+      padding-left: 4%;
+      font-size: .9em;
+      color: #3B73AF;
+
+      span {
+        padding-left: 4%;
+      }
+    }
+
+    .opp_owner {
+      position: absolute;
+      bottom: -10px;
+      right: 0;
+
+      img {
+        border-radius: 20px;
+      }
+    }
+  }
+}
