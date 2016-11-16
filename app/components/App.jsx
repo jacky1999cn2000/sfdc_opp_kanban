@@ -6,7 +6,8 @@ import Kanban from './Kanban';
 import Login from './Login';
 import Screen from './Screen';
 
-import {requestToken, requestUsers, requestOpportunityStages} from '../actions';
+import {requestToken, requestOpportunities, requestUsers, requestOpportunityStages} from '../actions';
+import {loadOpportunities, loadOpportunityStages, loadUsers} from '../actions'; // to for local dev only
 
 import cache from '../utils/cache';
 import config from '../config.json';
@@ -26,6 +27,14 @@ class App extends React.Component {
                 this.props.dispatch(requestToken(code));
             }
         }
+    }
+
+    componentDidMount() {
+        /// for run dev locally only
+        // this.props.dispatch(loadUsers());
+        // this.props.dispatch(loadOpportunities());
+        // this.props.dispatch(loadOpportunityStages());
+        // for run dev locally only
     }
 
     render() {
@@ -56,20 +65,24 @@ class App extends React.Component {
             }
 
             // 如果 users, opptunities, opptunity stages 还没有 load 完, 则显示 Loading
-            // if (!this.props.state.appState.get('hasUsers') || !this.props.state.appState.get('hasOpps') || !this.props.state.appState.get('hasOppStages')) {
-            if (!this.props.state.appState.get('hasUsers') || !this.props.state.appState.get('hasOppStages')) {
+            if (!this.props.state.appState.get('hasUsers') || !this.props.state.appState.get('hasOppStages') || !this.props.state.appState.get('hasOpps')) {
                 //add these 3 conditionals to prevent re-requesting
-                if (!this.props.state.appState.get('requestUsers')) {
+                if (!this.props.state.appState.get('requestingUsers')) {
                     this.props.dispatch(requestUsers());
                 }
                 if (!this.props.state.appState.get('requestingOppStages')) {
                     this.props.dispatch(requestOpportunityStages());
+                }
+                if (!this.props.state.appState.get('requestingOpps')) {
+                    this.props.dispatch(requestOpportunities());
                 }
 
                 content = <Screen/>;
             } else {
                 content = <Kanban/>;
             }
+
+            content = <Kanban/>
         }
 
         return (

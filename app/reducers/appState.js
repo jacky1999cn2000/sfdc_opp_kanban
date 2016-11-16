@@ -10,8 +10,8 @@ const appState = (state = Map({
     status: {},
 
     //these states were used for displaying "Loading" UI
-    requestingToken: false, // no need for "hasToken" since we check cache for it 
-    requestingUser: false,
+    requestingToken: false, // no need for "hasToken" since we check cache for it
+    requestingUsers: false,
     requestingOpps: false,
     requestingOppStages: false,
 

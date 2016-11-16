@@ -2,15 +2,20 @@
 
 import {
     fromJS,
-    List
+    Map
 } from 'immutable';
 import mockData from './mock/data.js';
 
-const users = (state = List(), action) => {
+const users = (state = Map(), action) => {
     switch (action.type) {
         case 'LOAD_USERS':
-            // return fromJS(mockData.users);
-            return fromJS(action.users);
+            let userMap = {};
+            action.users.forEach(function(user) {
+                //mockData.users.forEach(function(user) {
+                userMap[user.Id] = user;
+            });
+            //return fromJS(userMap);
+            return fromJS(userMap);
         default:
             return state;
     }
