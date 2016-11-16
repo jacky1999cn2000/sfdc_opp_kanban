@@ -4,8 +4,9 @@ import {connect} from 'react-redux';
 import Menu from './Menu';
 import Kanban from './Kanban';
 import Login from './Login';
+import Screen from './Screen';
 
-import {requestToken} from '../actions';
+import {requestToken, requestUsers, requestOpportunityStages} from '../actions';
 
 import cache from '../utils/cache';
 import config from '../config.json';
@@ -14,10 +15,10 @@ class App extends React.Component {
 
     componentWillMount() {
         /*
-            if 'access_token' and 'instance_url' present, do nothing;
-            if 'access_token' and 'instance_url' not present, then check if query string 'code' present:
-              yes - then it's SFDC oauth2 callback, use the code to retrieve token
-              no - do nothing, the render() function will redirect it to Login
+            如果 'access_token' 和 'instance_url' 已存在, 则不做任何事情;
+            如果 'access_token' 和 'instance_url' 不存在, 则查看 query string 'code' 是否存在:
+              存在 - 这是 SFDC oauth2 的 callback, 用 code 来获取 token
+              不存在 - 不做任何事情, 下一步 render() 会 redirect 到 Login
         */
         if (!cache.get('access_token') && !cache.get('instance_url')) {
             if (window.location.search && window.location.search.indexOf('code') != -1) {
@@ -32,17 +33,43 @@ class App extends React.Component {
 
         let content;
 
-        // based on the value of status, decide what to do - implement later
-        console.log('status? ', this.props.state.appState.get('status'));
+        // TODO: appState.status 类似于一个中枢消息系统,所有的 request 都会更新这个值, 根据这个值来 render 不同的消息
+        // console.log('status? ', this.props.state.appState.get('status'));
+        // console.log('typeof status ', typeof this.props.state.appState.get('status'));
+        // console.log('error ', this.props.state.appState.get('status').error);
+
+        if (this.props.state.appState.get('status').error) {
+            console.log('error!');
+            return <Screen type='error'/>;
+        }
 
         if (!cache.get('access_token') && !cache.get('instance_url')) {
-            content = <Login/>
+            if (this.props.state.appState.get('requestingToken')) {
+                content = <Screen/>;
+            } else {
+                content = <Login/>;
+            }
         } else {
-            // simply reload the page without query string to make the url clean
+            // already have token, simply reload the page without query string to make the url clean
             if (window.location.search) {
                 window.location.replace(config.redirect_uri);
             }
-            content = <Kanban/>
+
+            // 如果 users, opptunities, opptunity stages 还没有 load 完, 则显示 Loading
+            // if (!this.props.state.appState.get('hasUsers') || !this.props.state.appState.get('hasOpps') || !this.props.state.appState.get('hasOppStages')) {
+            if (!this.props.state.appState.get('hasUsers') || !this.props.state.appState.get('hasOppStages')) {
+                //add these 3 conditionals to prevent re-requesting
+                if (!this.props.state.appState.get('requestUsers')) {
+                    this.props.dispatch(requestUsers());
+                }
+                if (!this.props.state.appState.get('requestingOppStages')) {
+                    this.props.dispatch(requestOpportunityStages());
+                }
+
+                content = <Screen/>;
+            } else {
+                content = <Kanban/>;
+            }
         }
 
         return (

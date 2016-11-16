@@ -1,12 +1,16 @@
 'use strict';
 
-import { combineReducers } from 'redux';
+import {
+    combineReducers
+} from 'redux';
 import appState from './appState';
-import challenges from './challenges';
+import oppStages from './oppStages';
+import users from './users';
 
 const reducers = combineReducers({
     appState,
-    challenges
+    oppStages,
+    users
 });
 
 export default reducers;

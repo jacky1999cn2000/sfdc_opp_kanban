@@ -9,6 +9,16 @@ const appState = (state = Map({
 
     status: {},
 
+    //these states were used for displaying "Loading" UI
+    requestingToken: false, // no need for "hasToken" since we check cache for it 
+    requestingUser: false,
+    requestingOpps: false,
+    requestingOppStages: false,
+
+    hasUsers: false,
+    hasOpps: false,
+    hasOppStages: false,
+
     streaming: false,
     pushTopic: ''
 
