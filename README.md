@@ -1,3 +1,3 @@
 # sfdc_opp_kanban
 
-[DevOps](./documents/devOps)
+[DevOps](./documents/devOps.md)
