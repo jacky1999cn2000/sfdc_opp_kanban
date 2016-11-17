@@ -15,4 +15,4 @@
 
 * webpack.build.config.js (see inline comments)
 
-* .babelrc (see inline comments)
+* .babelrc (see inline comments)  
