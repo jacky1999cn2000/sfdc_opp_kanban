@@ -2,18 +2,21 @@ const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
+// set PATHS variable for easy reference later
 const PATHS = {
     app: path.join(__dirname, 'app'),
-    build: path.join(__dirname, 'build'),
-    foundation: path.join(__dirname, 'node_modules/foundation-sites/scss')
+    build: path.join(__dirname, 'build')
 };
 
+// set HOST and PORT (use environment variable if exist)
 const HOST = process.env.HOST || "0.0.0.0";
 const PORT = process.env.PORT || "8080";
 
+// set BABEL_ENV, which will be read by .babelrc (so 'react-hmre' preset will only be used for npm start)
 process.env.BABEL_ENV = process.env.npm_lifecycle_event;
 
 const config = {
+    // basic setup for entry, resolve, output
     entry: {
         app: PATHS.app
     },
@@ -24,6 +27,7 @@ const config = {
         path: PATHS.build,
         filename: 'bundle.js'
     },
+    // webpack-dev-server setup
     devtool: 'eval-source-map',
     devServer: {
         historyApiFallback: true,
@@ -36,6 +40,7 @@ const config = {
         port: PORT,
         host: HOST
     },
+    // modules for processing files
     module: {
         loaders: [{
             test: /\.json$/,
@@ -47,10 +52,12 @@ const config = {
         }, {
             test: /\.scss$/,
             loaders: ["style", "css?sourceMap", "sass?sourceMap"],
-            include: [PATHS.app, PATHS.foundation]
+            include: [PATHS.app]
         }]
     },
+    // plugins
     plugins: [
+        // HtmlWebpackPlugin plugin + html-webpack-template plugin will generate an index.html for us on the fly
         new HtmlWebpackPlugin({
             template: 'node_modules/html-webpack-template/index.ejs',
             title: 'SFDC_OPP_KANBAN app',
@@ -65,6 +72,7 @@ const config = {
                 'https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css'
             ],
         }),
+        // only add this for webpack-dev-server
         new webpack.HotModuleReplacementPlugin()
     ]
 }
