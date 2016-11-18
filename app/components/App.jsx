@@ -7,7 +7,7 @@ import Login from './Login';
 import Screen from './Screen';
 
 import {requestToken, requestOpportunities, requestUsers, requestOpportunityStages} from '../actions';
-import {loadOpportunities, loadOpportunityStages, loadUsers} from '../actions'; // to for local dev only
+import {loadOpportunities, loadOpportunityStages, loadUsers, loadStageFilters} from '../actions'; // to for local dev only
 
 import cache from '../utils/cache';
 import config from '../config.json';
@@ -39,6 +39,7 @@ class App extends React.Component {
         this.props.dispatch(loadUsers());
         this.props.dispatch(loadOpportunities());
         this.props.dispatch(loadOpportunityStages());
+        this.props.dispatch(loadStageFilters());
         /* uncomment the line below if run dev-server locally */
 
     }

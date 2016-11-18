@@ -8,6 +8,8 @@ import fetch from 'isomorphic-fetch';
 import config from '../config.json';
 import cache from '../utils/cache';
 
+/*     Token Action   */
+
 export const requestToken = (code) => {
     return function(dispatch) {
 
@@ -56,6 +58,7 @@ export const requestOpportunityStages = () => {
                 } else {
                     // load oppStages and notify App with status
                     dispatch(loadOpportunityStages(json.records));
+                    dispatch(loadStageFilter(json.records));
                     dispatch(changeAppState(['status', 'hasOppStages'], [json, true]));
                 }
             })
@@ -168,10 +171,28 @@ export const loadOpportunities = (opps) => {
     };
 }
 
+/*     AppStage Action   */
+
 export const changeAppState = (names, values) => {
     return {
         type: TYPES.CHANGE_APPSTATE,
         names,
         values
+    };
+}
+
+/*     Filters Action   */
+
+export const loadStageFilters = (stages) => {
+    return {
+        type: TYPES.LOAD_STAGEFILTERS,
+        stages
+    };
+}
+
+export const updateStageFilters = (stages) => {
+    return {
+        type: TYPES.UPDATE_STAGEFILTERS,
+        stages
     };
 }

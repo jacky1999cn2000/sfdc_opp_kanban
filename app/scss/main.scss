@@ -45,6 +45,8 @@ html, body, #app {
   height: 100%;
 }
 
+// import scss file for react-select
+@import "./node_modules/react-select/scss/default";
 @import "modules/app";
 @import "modules/menu";
 @import "modules/kanban";
