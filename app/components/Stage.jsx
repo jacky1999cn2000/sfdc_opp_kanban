@@ -9,7 +9,7 @@ class Stage extends React.Component {
                     {this.props.name}
                 </div>
                 <div className="list">
-                    {this.props.children}
+                    {this.props.opps}
                 </div>
             </div>
         );

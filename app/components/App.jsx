@@ -30,11 +30,17 @@ class App extends React.Component {
     }
 
     componentDidMount() {
-        /// for run dev locally only
-        // this.props.dispatch(loadUsers());
-        // this.props.dispatch(loadOpportunities());
-        // this.props.dispatch(loadOpportunityStages());
-        // for run dev locally only
+
+        /* uncomment the line below if run dev-server locally */
+        /*
+          we can only dispatch async actions inside render(), so when we dev locally,
+          we need to dispatch these sync actions from componentDidMount()
+        */
+        this.props.dispatch(loadUsers());
+        this.props.dispatch(loadOpportunities());
+        this.props.dispatch(loadOpportunityStages());
+        /* uncomment the line below if run dev-server locally */
+
     }
 
     render() {
@@ -65,23 +71,25 @@ class App extends React.Component {
             }
 
             // 如果 users, opptunities, opptunity stages 还没有 load 完, 则显示 Loading
-            if (!this.props.state.appState.get('hasUsers') || !this.props.state.appState.get('hasOppStages') || !this.props.state.appState.get('hasOpps')) {
-                //add these 3 conditionals to prevent re-requesting
-                if (!this.props.state.appState.get('requestingUsers')) {
-                    this.props.dispatch(requestUsers());
-                }
-                if (!this.props.state.appState.get('requestingOppStages')) {
-                    this.props.dispatch(requestOpportunityStages());
-                }
-                if (!this.props.state.appState.get('requestingOpps')) {
-                    this.props.dispatch(requestOpportunities());
-                }
+            /* comment off the following code block if run dev-server locally */
+            // if (!this.props.state.appState.get('hasUsers') || !this.props.state.appState.get('hasOppStages') || !this.props.state.appState.get('hasOpps')) {
+            //     //add these 3 conditionals to prevent re-requesting
+            //     if (!this.props.state.appState.get('requestingUsers')) {
+            //         this.props.dispatch(requestUsers());
+            //     }
+            //     if (!this.props.state.appState.get('requestingOppStages')) {
+            //         this.props.dispatch(requestOpportunityStages());
+            //     }
+            //     if (!this.props.state.appState.get('requestingOpps')) {
+            //         this.props.dispatch(requestOpportunities());
+            //     }
+            //     content = <Screen/>;
+            // } else {
+            //     content = <Kanban/>;
+            // }
+            /* comment off the code block above if run dev-server locally */
 
-                content = <Screen/>;
-            } else {
-                content = <Kanban/>;
-            }
-
+            /* uncomment the line below if run dev-server locally */
             content = <Kanban/>
         }
 

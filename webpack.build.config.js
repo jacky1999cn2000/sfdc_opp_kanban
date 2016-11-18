@@ -60,7 +60,7 @@ const config = {
                 // 'https://cdnjs.cloudflare.com/ajax/libs/foundation/6.2.4/foundation.min.js'
             ],
             links: [
-                'https://fonts.googleapis.com/css?family=Roboto|Ravi+Prakash',
+                'https://fonts.googleapis.com/css?family=Roboto|Ravi+Prakash|Indie+Flower',
                 'https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css'
             ],
         }),

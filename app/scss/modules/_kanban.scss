@@ -21,6 +21,7 @@
 .board {
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
 
   .stage {
     flex: 1;
@@ -35,7 +36,7 @@
   flex-direction: column;
 
   .name {
-    font-size: 1.5em;
+    font-size: 1em;
     font-family: 'Ravi Prakash';
     text-align: center;
   }
@@ -49,7 +50,7 @@
   list style
 */
 .list {
-  background-color: #f5f5f5;
+  // nothing here
 }
 
 /*
@@ -57,46 +58,56 @@
 */
 .opp {
   display: block;
-  height: 150px;
+  height: 120px;
   margin: 5%;
   box-shadow: 4px 6px 8px rgba(0, 0, 0, 0.75);
   background-color: white;
 
   .opp_name {
     color: #3B73AF;
-    font-family: serif;
+    font-family: 'Indie Flower';
+    font-size: 1em;
     font-weight: bolder;
-    text-align: left;
-    margin: 2% 5%;
+    text-align: center;
+    margin: 5% 5%;
     padding: 2% 0;
     border-bottom: 1px solid #3B73AF;
   }
 
-  .opp_description {
-    padding: 0 5%;
-    font-size: .9em;
+  .opp_info {
+    font-family: 'Indie Flower';
+    font-weight: bold;
     margin-bottom: 3%;
-  }
+    height: 100%;
 
-  .opp_amount_owner {
-    font-family: 'Roboto';
-    position: relative;
-    margin-bottom: 3%;
-
-    .opp_amount {
-      padding-left: 4%;
-      font-size: .9em;
+    div {
+      margin: 5% auto;
+      padding: 0 6%;
+      font-size: .7em;
       color: #3B73AF;
+    }
 
-      span {
-        padding-left: 4%;
+    .opp_more {
+      position: relative;
+      margin-top: 5%;
+
+      button {
+        font-family: 'Indie Flower';
+        font-size: 1.2em;
+        border: 1px black;
+        box-shadow: 4px 6px 8px rgba(0, 0, 0, 0.25);
+        cursor: pointer;
+        padding: 5% 10%;
+        background-color: #3B73AF;
+        color: white;
+        opacity: .7;
       }
     }
 
-    .opp_owner {
+    .opp_owner_photo {
       position: absolute;
+      right: -10px;
       bottom: -10px;
-      right: 0;
 
       img {
         border-radius: 20px;
