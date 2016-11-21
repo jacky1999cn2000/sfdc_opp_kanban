@@ -48,10 +48,6 @@ replace-for-dev-end*/
         let content;
 
         // TODO: appState.status 类似于一个中枢消息系统,所有的 request 都会更新这个值, 根据这个值来 render 不同的消息
-        // console.log('status? ', this.props.state.appState.get('status'));
-        // console.log('typeof status ', typeof this.props.state.appState.get('status'));
-        // console.log('error ', this.props.state.appState.get('status').error);
-
         if (this.props.state.appState.get('status').error) {
             console.log('error!');
             console.log(this.props.state.appState.get('status').error);
@@ -59,6 +55,7 @@ replace-for-dev-end*/
         }
 
         if (!cache.get('access_token') && !cache.get('instance_url')) {
+            // if the app is requesting token, then display a loading Screen component, otherwise, display Login component
             if (this.props.state.appState.get('requestingToken')) {
                 content = <Screen/>;
             } else {
