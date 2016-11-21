@@ -9,8 +9,12 @@ import mockData from './mock/data.js';
 const oppStages = (state = List(), action) => {
     switch (action.type) {
         case 'LOAD_OPPSTAGES':
+/*replace-for-dev-start
             return fromJS(mockData.oppStages);
-            //return fromJS(action.stages);
+replace-for-dev-end*/
+/*replace-for-prod-start*/
+            return fromJS(action.stages);
+/*replace-for-prod-end*/
         default:
             return state;
     }

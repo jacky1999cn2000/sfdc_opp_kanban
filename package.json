@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "webpack --config webpack.build.config.js",
-    "start": "webpack-dev-server"
+    "build": "./bin/replace-for-prod.sh && webpack --config webpack.build.config.js",
+    "start": "./bin/replace-for-dev.sh && webpack-dev-server"
   },
   "keywords": [],
   "author": "",

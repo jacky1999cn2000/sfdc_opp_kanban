@@ -58,7 +58,7 @@ export const requestOpportunityStages = () => {
                 } else {
                     // load oppStages and notify App with status
                     dispatch(loadOpportunityStages(json.records));
-                    dispatch(loadStageFilter(json.records));
+                    dispatch(loadStageFilters(json.records));
                     dispatch(changeAppState(['status', 'hasOppStages'], [json, true]));
                 }
             })

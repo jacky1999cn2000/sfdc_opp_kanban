@@ -30,18 +30,16 @@ class App extends React.Component {
     }
 
     componentDidMount() {
-
-        /* uncomment the line below if run dev-server locally */
         /*
           we can only dispatch async actions inside render(), so when we dev locally,
           we need to dispatch these sync actions from componentDidMount()
         */
+/*replace-for-dev-start
         this.props.dispatch(loadUsers());
         this.props.dispatch(loadOpportunities());
         this.props.dispatch(loadOpportunityStages());
         this.props.dispatch(loadStageFilters());
-        /* uncomment the line below if run dev-server locally */
-
+replace-for-dev-end*/
     }
 
     render() {
@@ -56,6 +54,7 @@ class App extends React.Component {
 
         if (this.props.state.appState.get('status').error) {
             console.log('error!');
+            console.log(this.props.state.appState.get('status').error);
             return <Screen type='error'/>;
         }
 
@@ -72,26 +71,27 @@ class App extends React.Component {
             }
 
             // 如果 users, opptunities, opptunity stages 还没有 load 完, 则显示 Loading
-            /* comment off the following code block if run dev-server locally */
-            // if (!this.props.state.appState.get('hasUsers') || !this.props.state.appState.get('hasOppStages') || !this.props.state.appState.get('hasOpps')) {
-            //     //add these 3 conditionals to prevent re-requesting
-            //     if (!this.props.state.appState.get('requestingUsers')) {
-            //         this.props.dispatch(requestUsers());
-            //     }
-            //     if (!this.props.state.appState.get('requestingOppStages')) {
-            //         this.props.dispatch(requestOpportunityStages());
-            //     }
-            //     if (!this.props.state.appState.get('requestingOpps')) {
-            //         this.props.dispatch(requestOpportunities());
-            //     }
-            //     content = <Screen/>;
-            // } else {
-            //     content = <Kanban/>;
-            // }
-            /* comment off the code block above if run dev-server locally */
+/*replace-for-prod-start*/
+            if (!this.props.state.appState.get('hasUsers') || !this.props.state.appState.get('hasOppStages') || !this.props.state.appState.get('hasOpps')) {
+                //add these 3 conditionals to prevent re-requesting
+                if (!this.props.state.appState.get('requestingUsers')) {
+                    this.props.dispatch(requestUsers());
+                }
+                if (!this.props.state.appState.get('requestingOppStages')) {
+                    this.props.dispatch(requestOpportunityStages());
+                }
+                if (!this.props.state.appState.get('requestingOpps')) {
+                    this.props.dispatch(requestOpportunities());
+                }
+                content = <Screen/>;
+            } else {
+                content = <Kanban/>;
+            }
+/*replace-for-prod-end*/
 
-            /* uncomment the line below if run dev-server locally */
+/*replace-for-dev-start
             content = <Kanban/>
+replace-for-dev-end*/
         }
 
         return (
