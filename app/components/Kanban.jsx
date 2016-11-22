@@ -9,7 +9,6 @@ import Opp from './Opp';
 class Kanban extends React.Component {
 
     render() {
-        console.log('Kanban render');
 
         /* convert redux's immutableJS data structure into javascript data structure */
         let userMap = this.props.state.users.toJSON();
@@ -49,7 +48,7 @@ class Kanban extends React.Component {
                 opp.OwnerPhoto = userMap[opp.OwnerId].SmallPhotoUrl + '?oauth_token=' + cache.get('access_token');
                 component_opps.push(<Opp key={opp.Id} opp={opp}/>);
             });
-            component_stages.push(<Stage key={oppStage.ApiName} name={oppStage.ApiName} opps={component_opps}/>);
+            component_stages.push(<Stage key={oppStage.ApiName} name={oppStage.ApiName} opps={component_opps} dispatch={this.props.dispatch}/>);
         });
 
         return (
@@ -67,6 +66,7 @@ class Kanban extends React.Component {
 }
 
 const mapStateToProps = (state) => {
+    console.log('state ', state);
     return {state: state}
 }
 

@@ -1,6 +1,7 @@
 import React from 'react';
 import {ItemTypes} from '../constants/itemTypes';
 import {DropTarget} from 'react-dnd';
+import {updateOpp} from '../actions';
 
 // spec methods (can access component's own props)
 const stageTarget = {
@@ -13,9 +14,12 @@ const stageTarget = {
         return true;
     },
 
-    //
-    drop(props) {
+    // TODO: NEED TO CALL SFDC TO UPDATE DATA
+    drop(props, monitor) {
+        let item = monitor.getItem();
+        console.log('item ', item);
         console.log('dropped to stage: ', props.name);
+        props.dispatch(updateOpp(item.id, props.name));
     }
 };
 

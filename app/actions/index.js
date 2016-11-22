@@ -196,3 +196,13 @@ export const updateStageFilters = (stages) => {
         stages
     };
 }
+
+/*     Update Opp Action   */
+
+export const updateOpp = (id, stage) => {
+    return {
+        type: TYPES.UPDATE_OPP,
+        id,
+        stage
+    };
+}
