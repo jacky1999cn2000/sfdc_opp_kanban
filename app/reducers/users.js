@@ -10,10 +10,10 @@ const users = (state = Map(), action) => {
     switch (action.type) {
         case 'LOAD_USERS':
             let userMap = {};
-/*replace-for-dev-start*/
+/*replace-for-dev-start
             mockData.users.forEach((user) => {
-/*replace-for-dev-end*/
-/*replace-for-prod-start
+replace-for-dev-end*/
+/*replace-for-prod-start*/
             action.users.forEach((user) => {
 /*replace-for-prod-end*/             
                 userMap[user.Id] = user;
