@@ -1,0 +1,3 @@
+exports.ItemTypes = {
+  OPP: 'OPP'
+};

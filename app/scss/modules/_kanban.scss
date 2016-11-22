@@ -2,7 +2,8 @@
   kanban style
 */
 .kanban {
-  height: 100%;
+  // a hacky way to make sure the "renderOverlay" color in Stage component can cover the height of screen
+  height: 1000%;
   display: flex;
   flex-direction: column;
 

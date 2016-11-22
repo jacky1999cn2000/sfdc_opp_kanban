@@ -225,7 +225,7 @@ let mockData = {
         "Name": "Acme - 600 Widgets",
         "Description": "The deal is at 20% because they are at the sales process stage of defining their requirements.  It is not clear whether our solutions are a good fit or not but they are willing to discuss this in detail.",
         "Amount": 70000,
-        "StageName": "Needs Analysis",
+        "StageName": "Closed Lost",
         "OwnerId": "00541000001IggnAAC"
     }, {
         "attributes": {
@@ -236,7 +236,7 @@ let mockData = {
         "Name": "Acme - 200 Widgets",
         "Description": "The deal is at 10% because they are at the sales process stage of evaluating just being converted from a lead.  No formal sales engagement has taken place yet.",
         "Amount": 20000,
-        "StageName": "Prospecting",
+        "StageName": "Closed Lost",
         "OwnerId": "00541000001IggnAAC"
     }, {
         "attributes": {
@@ -676,7 +676,7 @@ let mockData = {
         "Name": "salesforce.com - 1,000 Widgets",
         "Description": "They are interested in our widgets! The deal is at 90% because they are at the sales process stage of negotiating the finer points of a proposal that we submitted. We are negotiating with their key decision makers and are confident that this deal will close soon.",
         "Amount": 100000,
-        "StageName": "Negotiation/Review",
+        "StageName": "Closed Lost",
         "OwnerId": "00541000001IhhSAAS"
     }, {
         "attributes": {
@@ -709,7 +709,7 @@ let mockData = {
         "Name": "salesforce.com - 500 Widgets",
         "Description": "Initial deal for 500 widgets. We expect follow-on business with a potential upside of 4000 additional widgets over the next 12 months.",
         "Amount": 50000,
-        "StageName": "Closed Won",
+        "StageName": "Closed Lost",
         "OwnerId": "00541000001IhhhAAC"
     }, {
         "attributes": {
@@ -753,7 +753,7 @@ let mockData = {
         "Name": "Acme - 200 Widgets",
         "Description": "The deal is at 10% because they are at the sales process stage of evaluating just being converted from a lead. No formal sales engagement has taken place yet.",
         "Amount": 20000,
-        "StageName": "Prospecting",
+        "StageName": "Closed Lost",
         "OwnerId": "00541000001IhhhAAC"
     }, {
         "attributes": {
