@@ -14,12 +14,12 @@ do
 	echo "replacing file: " $prefix$i
 
   # uncomment off dev code
-  sed -i 's/^\/\*replace-for-dev-start$/\/\*replace-for-dev-start\*\//g' $prefix$i
-  sed -i 's/^replace-for-dev-end\*\/$/\/\*replace-for-dev-end\*\//g' $prefix$i
+  sed -i 's/^\s*\/\*replace-for-dev-start\s*$/\/\*replace-for-dev-start\*\//g' $prefix$i
+  sed -i 's/^\s*replace-for-dev-end\*\/\s*$/\/\*replace-for-dev-end\*\//g' $prefix$i
 
   # comment off prod code
-  sed -i 's/^\/\*replace-for-prod-start\*\/$/\/\*replace-for-prod-start/g' $prefix$i
-  sed -i 's/^\/\*replace-for-prod-end\*\/$/replace-for-prod-end\*\//g' $prefix$i
+  sed -i 's/^\s*\/\*replace-for-prod-start\*\/\s*$/\/\*replace-for-prod-start/g' $prefix$i
+  sed -i 's/^\s*\/\*replace-for-prod-end\*\/\s*$/replace-for-prod-end\*\//g' $prefix$i
 done
 
 echo "replace-for-dev ended!"
