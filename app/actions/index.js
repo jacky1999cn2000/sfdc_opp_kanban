@@ -5,7 +5,7 @@ import {
 } from './types.js'
 require('es6-promise').polyfill();
 import fetch from 'isomorphic-fetch';
-import config from '../config.json';
+import config from '../constants/config.json';
 import cache from '../utils/cache';
 
 /*     Token Action   */

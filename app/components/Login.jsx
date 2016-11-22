@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import config from '../config.json';
+import config from '../constants/config.json';
 
 class Login extends React.Component {
 
