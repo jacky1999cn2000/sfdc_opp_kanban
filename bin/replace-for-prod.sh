@@ -6,7 +6,7 @@ echo "replace-for-prod started..."
 prefix=`pwd`/app
 
 # create an array of files that need to be processed
-files=( "/components/App.jsx" "/reducers/opps.js" "/reducers/oppStages.js" "/reducers/users.js" "/reducers/stageFilters.js")
+files=( "/components/App.jsx" "/components/Stage.jsx" "/reducers/opps.js" "/reducers/oppStages.js" "/reducers/users.js" "/reducers/stageFilters.js")
 
 # iterate the files array, the value (file name) can be accessed via $i within the loop
 for i in "${files[@]}"
