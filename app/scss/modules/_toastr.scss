@@ -3,6 +3,7 @@
   min-width: 500px;
   margin-left: -250px;
   background-color: #6DAE6A;
+  font-size: 1em;
   color: #fff;
   text-align: center;
   border-radius: 2px;
@@ -11,6 +12,13 @@
   z-index: 1;
   left: 50%;
   bottom: 30px;
+
+  span {
+    margin: 0 5px;
+    font-size: 1em;
+    font-weight: bolder;
+    color: yellow;
+  }
 }
 
 .toastr.show {

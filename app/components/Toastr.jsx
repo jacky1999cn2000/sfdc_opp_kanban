@@ -5,14 +5,22 @@ import {ActionTypes} from '../constants/types';
 class Toastr extends React.Component {
 
     render() {
-        let show = !!this.props.type;
-        let type = this.props.type;
+        let show = !!this.props.status.type;
+        let type = this.props.status.type;
+        let id = this.props.status.id;
+        let stage = this.props.status.stage;
 
         let content;
         if (show) {
             switch (type) {
                 case ActionTypes.UPDATED_OPP:
-                    content = 'Opportunity Updated!';
+                    content = (
+                        <p>The StageName of Opportunity
+                            <span>{id}</span>
+                            has been updated to
+                            <span>{stage}</span>
+                        </p>
+                    );
                     break;
                 default:
                     content = null;
@@ -20,9 +28,7 @@ class Toastr extends React.Component {
         }
 
         return (
-            <div className={classNames('toastr', {
-                show: !!this.props.type
-            })}>
+            <div className={classNames('toastr', {show: show})}>
                 {content}
             </div>
         );

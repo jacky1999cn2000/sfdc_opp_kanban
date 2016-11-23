@@ -117,7 +117,8 @@ replace-for-dev-end*/
                 <div className="content">
                     {content}
                 </div>
-                <Toastr type={this.props.state.appState.get('status').type}/>
+
+                <Toastr status={this.props.state.appState.get('status')}/>
                 <div className="footer">
                     footer here
                 </div>
