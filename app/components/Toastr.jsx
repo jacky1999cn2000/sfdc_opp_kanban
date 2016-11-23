@@ -1,15 +1,29 @@
 import React from 'react';
 import classNames from 'classnames';
+import {ActionTypes} from '../constants/types';
 
 class Toastr extends React.Component {
 
     render() {
-        console.log('Toastr type ', !!this.props.type);
+        let show = !!this.props.type;
+        let type = this.props.type;
+
+        let content;
+        if (show) {
+            switch (type) {
+                case ActionTypes.UPDATED_OPP:
+                    content = 'Opportunity Updated!';
+                    break;
+                default:
+                    content = null;
+            }
+        }
+
         return (
             <div className={classNames('toastr', {
                 show: !!this.props.type
             })}>
-                Some text some message..
+                {content}
             </div>
         );
     }
