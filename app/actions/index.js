@@ -3,6 +3,9 @@
 import {
     TYPES
 } from './types.js'
+import {
+    ActionTypes
+} from '../constants/types';
 require('es6-promise').polyfill();
 import fetch from 'isomorphic-fetch';
 import config from '../constants/config.json';
@@ -198,6 +201,54 @@ export const updateStageFilters = (stages) => {
 }
 
 /*     Update Opp Action   */
+
+export const updateOppInSFDC = (id, stage) => {
+    return function(dispatch) {
+        console.log('updateOppInSFDC ', updateOppInSFDC);
+        let url = cache.get('instance_url') + '/services/data/v20.0/sobjects/Opportunity/' + id;
+
+        console.log('url ', url);
+
+        let headers = new Headers();
+        headers.append("Authorization", 'Bearer ' + cache.get('access_token'));
+        headers.append("Content-Type", 'application/json');
+
+        return fetch(url, {
+                headers: headers,
+                method: 'PATCH',
+                body: JSON.stringify({
+                    "StageName": stage
+                })
+            })
+            .then(response => {
+                // response : {type: "cors", url: "https://jj158.my.salesforce.com/services/data/v20.0/sobjects/Opportunity/00641000004XuanAAC", status: 204, ok: true, statusText: "No Content"}
+                if (response.status == 204) {
+                    // update redux data so updated opp can be placed in accurate stage column
+                    dispatch(updateOpp(id, stage));
+                    // notify App about the update
+                    dispatch(changeAppState(['status'], [{
+                        type: ActionTypes.UPDATED_OPP,
+                        id: id,
+                        stage: stage
+                    }]));
+                } else {
+                    // notify App about the error
+                    dispatch(changeAppState(['status'], [{
+                        error: 'error in updateOppInSFDC'
+                    }]));
+                }
+            })
+            .catch(err => {
+                /*
+                  CORS error if haven't added "https://s3-us-west-2.amazonaws.com" into SFDC org's CORS whitelist origins
+                  (Setup - Security Controls - CORS)
+                */
+                dispatch(changeAppState(['status'], [{
+                    error: err
+                }]));
+            });
+    }
+}
 
 export const updateOpp = (id, stage) => {
     return {

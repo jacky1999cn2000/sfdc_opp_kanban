@@ -1,7 +1,7 @@
 import React from 'react';
-import {ItemTypes} from '../constants/itemTypes';
+import {ItemTypes} from '../constants/types';
 import {DropTarget} from 'react-dnd';
-import {updateOpp} from '../actions';
+import {updateOpp, updateOppInSFDC} from '../actions';
 
 // spec methods (can access component's own props)
 const stageTarget = {
@@ -19,7 +19,16 @@ const stageTarget = {
         let item = monitor.getItem();
         console.log('item ', item);
         console.log('dropped to stage: ', props.name);
+
+        // for local dev, we only update redux data, not SFDC data (CORS issue)
+
+        /*replace-for-dev-start
         props.dispatch(updateOpp(item.id, props.name));
+        replace-for-dev-end*/
+
+        /*replace-for-prod-start*/
+        props.dispatch(updateOppInSFDC(item.id, props.name));
+        /*replace-for-prod-end*/
     }
 };
 

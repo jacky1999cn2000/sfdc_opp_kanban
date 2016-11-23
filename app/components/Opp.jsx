@@ -1,5 +1,5 @@
 import React from 'react';
-import {ItemTypes} from '../constants/itemTypes';
+import {ItemTypes} from '../constants/types';
 import {DragSource} from 'react-dnd';
 
 // spec methods (can access component's own props)
