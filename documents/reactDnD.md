@@ -1,14 +1,16 @@
+# reactDnD
 
-
-Module build failed: SyntaxError: Decorators are not officially supported yet in 6.x pending a proposal update.
-However, if you need to use them you can install the legacy decorators transform with:
-
-npm install babel-plugin-transform-decorators-legacy --save-dev
-
-and add the following line to your .babelrc file:
-
-{
-  "plugins": ["transform-decorators-legacy"]
-}
-
-The repo url is: https://github.com/loganfsmyth/babel-plugin-transform-decorators-legacy.
+* [reactDnD](https://gaearon.github.io/react-dnd/)
+* npm modules
+  * dependencies
+    * react-dnd
+    * react-dnd-html5-backend
+  * devDependencies
+    * babel-plugin-transform-decorators-legacy (also added `"plugins":["transform-decorators-legacy"]` in .babelrc in order to use decorators in code)
+* components roles
+  * Board.jsx: DragDropContext
+  * Stage.jsx: DropTarget
+  * Opp.jsx: DragSource
+* actions
+  * updateOpp (sync action, only update opp in Redux)
+  * updateOppInSFDC (async function, update opp in SFDC first, if successful, then dispatch updateOpp to update opp in Redux)
