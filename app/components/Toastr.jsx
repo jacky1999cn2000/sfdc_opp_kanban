@@ -1,25 +1,18 @@
 import React from 'react';
-import {connect} from 'react-redux';
+import classNames from 'classnames';
 
 class Toastr extends React.Component {
 
     render() {
+        console.log('Toastr type ', !!this.props.type);
         return (
-            <div>
-                toaster: {this.props.state.appState.get('status')}
+            <div className={classNames('toastr', {
+                show: !!this.props.type
+            })}>
+                Some text some message..
             </div>
         );
     }
 }
-
-const mapStateToProps = (state) => {
-    return {state: state}
-}
-
-const mapDispathToProps = (dispatch) => {
-    return {dispatch: dispatch}
-}
-
-Toastr = connect(mapStateToProps, mapDispathToProps)(Toastr);
 
 export default Toastr;

@@ -1,5 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import classNames from 'classnames';
 
 class Menu extends React.Component {
 
@@ -18,16 +19,12 @@ class Menu extends React.Component {
 
     // have tot use arrow style in order to use 'this' in render
     render = () => {
-        let menuClsName = '';
-        let arrow = <i className="fa fa-angle-down" aria-hidden="true"></i>;
-
-        if (this.state.active) {
-            menuClsName = 'active';
-            arrow = <i className="fa fa-angle-up" aria-hidden="true"></i>;
-        }
+        let arrow = (this.state.active
+            ? <i className="fa fa-angle-up" aria-hidden="true"></i>
+            : <i className="fa fa-angle-down" aria-hidden="true"></i>);
 
         return (
-            <div className={'menu ' + menuClsName}>
+            <div className={classNames('menu', {active: this.state.active})}>
                 <button className="toggle-nav" onClick={() => this.toggle()}>
                     {arrow}
                 </button>
