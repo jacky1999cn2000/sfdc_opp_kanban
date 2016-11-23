@@ -22,13 +22,13 @@ const stageTarget = {
 
         // for local dev, we only update redux data, not SFDC data (CORS issue)
 
-/*replace-for-dev-start
+/*replace-for-dev-start*/
         props.dispatch(updateOpp(item.id, props.name));
-replace-for-dev-end*/
+/*replace-for-dev-end*/
 
-/*replace-for-prod-start*/
+/*replace-for-prod-start
         props.dispatch(updateOppInSFDC(item.id, props.name));
-/*replace-for-prod-end*/
+replace-for-prod-end*/
     }
 };
 
