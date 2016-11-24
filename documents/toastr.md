@@ -34,9 +34,9 @@
 * More about success() method
   * there are 2 scenarios for Toastr component to consider
     * if only 1 message was passed in - this was simple, Toastr just display the message, and wait for timeout callback to put everything back to normal
-    ![toastr1](./img/toastr1.png)
+    ![toastr1](./img/toastr1.gif)
     * there are several consecutive messages passed in - we want to display those messages in a stack style, and want the timeout callback to be only called once (the only time timeout callback would be called should be 4 seconds later after the last message was passed in)
-    ![toastr2](./img/toastr2.png)
+    ![toastr2](./img/toastr2.gif)
   * solution
     * we kept 2 arrays - messageList to contain all messages, and timeoutList to contain all registered timeout Ids
     * every time when success was called, we checked the timeoutList
