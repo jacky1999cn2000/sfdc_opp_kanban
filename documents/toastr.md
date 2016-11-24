@@ -14,7 +14,11 @@
     ...
 
     case ActionTypes.UPDATED_OPP:
-      this._toastr.success(this.props.state.appState.get('status'));
+        console.log('opp updated!');
+        this._toastr.success(this.props.state.appState.get('status'));
+        //need to reset status so the render caused by Toastr won't land in this switch branch and add the old status again
+        this.props.dispatch(changeAppState(['status'], [{}]));
+        break;
 
     ...
 
@@ -96,7 +100,7 @@
       4. register another callback and put the id in timeoutList
 
 
-* some code to help manual testing 
+* some code to help manual testing
 ```
 App.jsx
 
