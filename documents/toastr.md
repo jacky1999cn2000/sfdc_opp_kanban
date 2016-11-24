@@ -89,8 +89,37 @@
       3. register a timeout callback, and put the id in timeoutList (if during the 4 seconds, there was no other messages coming in, then timeout callback would be called, which would first clear both timeoutList and messageList, and then set Toastr component to be invisible again)
 
       * if timeoutList is not empty (which means the current success() method was being called when there was already a registered timeout callback waiting to be called, which also means there were some messages currently being displayed too), then this is scenario 2 we talked above, and we would do:
-      
+
       1. clear the current timeout
       2. add message to messageList
       3. make Toastr component invisible
       4. register another callback and put the id in timeoutList
+
+
+* some code to help manual testing 
+```
+App.jsx
+
+// add the following 2 function in App class
+
+sendFullStatus = () => {
+    console.log('sendFullStatus');
+    counter++;
+    this.props.dispatch(changeAppState(['status'], [
+        {
+            type: ActionTypes.UPDATED_OPP,
+            id: counter,
+            stage: 'Prospecting'
+        }
+    ]));
+}
+
+sendEmptyStatus = () => {
+    console.log('sendEmptyStatus');
+    this.props.dispatch(changeAppState(['status'], [{}]));
+}
+
+// add the following 2 buttons in render
+<button type="button" className="button" onClick={this.sendFullStatus}>SendFullStatus</button>
+<button type="button" className="button" onClick={this.sendEmptyStatus}>SendEmptyStatus</button>
+```

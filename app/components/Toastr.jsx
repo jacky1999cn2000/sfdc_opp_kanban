@@ -1,35 +1,48 @@
 import React from 'react';
 import classNames from 'classnames';
-import {ActionTypes} from '../constants/types';
+
+let messageList = [];
+let timeoutList = [];
 
 class Toastr extends React.Component {
 
-    render() {
-        let show = !!this.props.status.type;
-        let type = this.props.status.type;
-        let id = this.props.status.id;
-        let stage = this.props.status.stage;
+    /*
+      refer to toastr.md for detailed explanation
+    */
+    success = (status) => {
 
-        let content;
-        if (show) {
-            switch (type) {
-                case ActionTypes.UPDATED_OPP:
-                    content = (
-                        <p>The StageName of Opportunity
-                            <span>{id}</span>
-                            has been updated to
-                            <span>{stage}</span>
-                        </p>
-                    );
-                    break;
-                default:
-                    content = null;
-            }
+        if (timeoutList.length) {
+            clearTimeout(timeoutList.pop());
         }
 
+        messageList.unshift(status);
+
+        this._container.attributes['class'].ownerElement.className = 'toastr show';
+
+        timeoutList.unshift(setTimeout(() => {
+            timeoutList = [];
+            messageList = [];
+            this._container.attributes['class'].ownerElement.className = 'toastr';
+        }, 2000));
+    }
+
+    render() {
+        let toastrList = [];
+        messageList.forEach((message, index) => {
+            toastrList.push(
+                <div key={index} className="message">The StageName of Opportunity
+                    <span>{message.id}</span>
+                    has been updated to
+                    <span>{message.stage}</span>
+                </div>
+            );
+        });
+
         return (
-            <div className={classNames('toastr', {show: show})}>
-                {content}
+            <div ref={(container) => {
+                this._container = container;
+            }} className="toastr show">
+                {toastrList}
             </div>
         );
     }

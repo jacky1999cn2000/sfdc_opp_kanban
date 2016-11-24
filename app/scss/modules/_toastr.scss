@@ -1,17 +1,28 @@
 .toastr {
   visibility: hidden;
+
+  // the following 3 lines make sure the toastr appear in the middle of the screen
+  left: 50%;
   min-width: 500px;
   margin-left: -250px;
-  background-color: #6DAE6A;
-  font-size: 1em;
-  color: #fff;
-  text-align: center;
-  border-radius: 2px;
-  padding: 16px;
+
+  // make sure the toastr stick to the viewport
   position: fixed;
   z-index: 1;
-  left: 50%;
   bottom: 30px;
+
+  // no background-color for this container div so the background is transparent
+
+  .message {
+    font-size: 1em;
+    color: #fff;
+    text-align: center;
+    border-radius: 2px;
+    margin-bottom: 5px;
+    padding: 20px;
+    width: 100%;
+    background-color: #6DAE6A;
+  }
 
   span {
     margin: 0 5px;
@@ -28,7 +39,10 @@
     take 0.5 seconds to fade in and out the toastr;
     however, delay the fade out process for 2.5 seconds.
   */
-  animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  animation: fadein 0.5s;
+
+  // we won't use fadeout animation since it will conflict with our timeout callback in Toastr component
+  // animation: fadein 0.5s, fadeout 0.5s 2.5s;
 }
 
 @keyframes fadein {
