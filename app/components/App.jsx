@@ -8,9 +8,9 @@ import Screen from './Screen';
 import Toastr from './Toastr';
 
 import {requestToken, requestOpportunities, requestUsers, requestOpportunityStages, changeAppState} from '../actions';
-/*replace-for-dev-start*/
+/*replace-for-dev-start
 import {loadOpportunities, loadOpportunityStages, loadUsers, loadStageFilters} from '../actions';
-/*replace-for-dev-end*/
+replace-for-dev-end*/
 
 import {ActionTypes} from '../constants/types';
 import cache from '../utils/cache';
@@ -45,12 +45,12 @@ class App extends React.Component {
           we can only dispatch async actions inside render(), so when we dev locally,
           we need to dispatch these sync actions from componentDidMount()
         */
-        /*replace-for-dev-start*/
+/*replace-for-dev-start
         this.props.dispatch(loadUsers());
         this.props.dispatch(loadOpportunities());
         this.props.dispatch(loadOpportunityStages());
         this.props.dispatch(loadStageFilters());
-        /*replace-for-dev-end*/
+replace-for-dev-end*/
     }
 
     render() {
@@ -90,7 +90,7 @@ class App extends React.Component {
             }
 
             // 如果 users, opptunities, opptunity stages 还没有 load 完, 则显示 Loading
-            /*replace-for-prod-start
+/*replace-for-prod-start*/
             if (!this.props.state.appState.get('hasUsers') || !this.props.state.appState.get('hasOppStages') || !this.props.state.appState.get('hasOpps')) {
                 //add these 3 conditionals to prevent re-requesting
                 if (!this.props.state.appState.get('requestingUsers')) {
@@ -106,11 +106,11 @@ class App extends React.Component {
             } else {
                 content = <Kanban/>;
             }
-replace-for-prod-end*/
+/*replace-for-prod-end*/
 
-            /*replace-for-dev-start*/
+/*replace-for-dev-start
             content = <Kanban/>
-            /*replace-for-dev-end*/
+replace-for-dev-end*/
         }
 
         return (
