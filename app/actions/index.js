@@ -136,7 +136,7 @@ export const requestOpportunities = () => {
         // notify App "requestingOpps" is set true
         dispatch(changeAppState(['requestingOpps'], [true]));
 
-        let url = cache.get('instance_url') + '/services/data/v37.0/query/?q=SELECT+Id,+Name,+Description,+Amount,+StageName,+OwnerId+FROM+Opportunity';
+        let url = cache.get('instance_url') + '/services/data/v37.0/query/?q=SELECT+Id,+Name,+Description,+Amount,+StageName,+OwnerId+FROM+Opportunity+LIMIT+100';
 
         let headers = new Headers();
         headers.append("Authorization", 'Bearer ' + cache.get('access_token'));
