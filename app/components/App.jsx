@@ -24,6 +24,7 @@ class App extends React.Component {
     }
 
     componentWillMount() {
+        console.log('componentWillMount');
         /*
             如果 'access_token' 和 'instance_url' 已存在, 则不做任何事情;
             如果 'access_token' 和 'instance_url' 不存在, 则查看 query string 'code' 是否存在:
@@ -39,16 +40,17 @@ class App extends React.Component {
     }
 
     componentDidMount() {
+        console.log('componentDidMount');
         /*
           we can only dispatch async actions inside render(), so when we dev locally,
           we need to dispatch these sync actions from componentDidMount()
         */
-/*replace-for-dev-start*/
+        /*replace-for-dev-start*/
         this.props.dispatch(loadUsers());
         this.props.dispatch(loadOpportunities());
         this.props.dispatch(loadOpportunityStages());
         this.props.dispatch(loadStageFilters());
-/*replace-for-dev-end*/
+        /*replace-for-dev-end*/
     }
 
     render() {
@@ -88,7 +90,7 @@ class App extends React.Component {
             }
 
             // 如果 users, opptunities, opptunity stages 还没有 load 完, 则显示 Loading
-/*replace-for-prod-start
+            /*replace-for-prod-start
             if (!this.props.state.appState.get('hasUsers') || !this.props.state.appState.get('hasOppStages') || !this.props.state.appState.get('hasOpps')) {
                 //add these 3 conditionals to prevent re-requesting
                 if (!this.props.state.appState.get('requestingUsers')) {
@@ -106,9 +108,9 @@ class App extends React.Component {
             }
 replace-for-prod-end*/
 
-/*replace-for-dev-start*/
+            /*replace-for-dev-start*/
             content = <Kanban/>
-/*replace-for-dev-end*/
+            /*replace-for-dev-end*/
         }
 
         return (
@@ -130,7 +132,7 @@ replace-for-prod-end*/
 }
 
 const mapStateToProps = (state) => {
-    console.log('state ', state);
+    // console.log('state ', state);
     return {state: state}
 }
 
